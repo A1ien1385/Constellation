@@ -5,6 +5,8 @@ class Sky {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
   }
+
+  initCanvas()
 }
 
 const sky = new Sky(document.querySelector("#canvas"));
