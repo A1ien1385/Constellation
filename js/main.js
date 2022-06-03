@@ -12,8 +12,15 @@ class Sky {
     this.ctx.fillStyle = "#000000";
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
+
+  draw() {
+    console.log("works");
+    window.requestAnimationFrame(() => this.draw());
+  }
+
   run() {
     this.initCanvas();
+    this.draw();
   }
 }
 
