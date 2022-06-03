@@ -22,6 +22,7 @@ class Sky {
         x: Math.random() * this.width,
         y: Math.random() * this.height,
         radius: radius,
+        originalRadius: radius,
         color: "#FF14BD",
         speed: Math.random() + 0.25,
       });
@@ -39,6 +40,8 @@ class Sky {
   updateStars() {
     this.stars.forEach((star) => {
       star.x += star.speed;
+      star.y -= (star.speed * (this.width / 2 - star.x)) / 3000;
+      star.radius = star.originalRadius * (Math.random() / 4 + 0.9);
 
       if (star.x > this.width + 2 * star.radius) {
         star.x = -2 * star.radius;
