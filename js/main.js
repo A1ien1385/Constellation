@@ -23,7 +23,7 @@ class Sky {
         y: Math.random() * this.height,
         radius: radius,
         originalRadius: radius,
-        color: "#FF14BD",
+        color: "#FF58DD",
         speed: Math.random() + 0.25,
       });
     }
@@ -47,6 +47,21 @@ class Sky {
         star.x = -2 * star.radius;
       }
     });
+  }
+
+  drawOverlayer() {
+    let gradient = this.ctx.createRadialGradient(
+      this.width / 2,
+      this.height / 2,
+      250,
+      this.width / 2,
+      this.height / 2,
+      this.width / 2
+    );
+    gradient.addColorStop(0, "rgba(0,0,0,0)");
+    gradient.addColorStop(1, "rgba(0,0,0,0.75)");
+    this.ctx.fillStyle = gradient;
+    this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
   clearCanvas() {
@@ -76,6 +91,7 @@ class Sky {
     this.clearCanvas();
     this.drawStars();
     this.updateStars();
+    this.drawOverlayer();
     window.requestAnimationFrame(() => this.draw());
   }
 
