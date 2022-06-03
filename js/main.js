@@ -13,6 +13,28 @@ class Sky {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
+  generateStars(count) {
+    let stars = [];
+
+    for (let i = 0; i < count; i++) {
+      const radius = Math.random() * 3 + 2;
+      stars.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        radius: radius,
+        color: "#fff",
+      });
+    }
+
+    this.stars = stars;
+  }
+
+  drawStars() {
+    this.stars.forEach((star) => {
+      this.drawStar(star);
+    });
+  }
+
   drawStar(star) {
     this.ctx.save();
     this.ctx.fillStyle = star.color;
@@ -32,11 +54,13 @@ class Sky {
   }
 
   draw() {
+    this.drawStars();
     window.requestAnimationFrame(() => this.draw());
   }
 
   run() {
     this.initCanvas();
+    this.generateStars(500);
     this.draw();
   }
 }
