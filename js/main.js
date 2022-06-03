@@ -22,7 +22,7 @@ class Sky {
         x: Math.random() * this.width,
         y: Math.random() * this.height,
         radius: radius,
-        color: "#fff",
+        color: "#FF14BD",
         speed: Math.random() + 0.25,
       });
     }
