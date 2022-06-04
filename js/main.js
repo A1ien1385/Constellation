@@ -64,7 +64,9 @@ class Sky {
     };
   }
 
-  drawConstellation() {}
+  drawConstellation() {
+    const { stars } = this.constellation;
+  }
 
   drawOverlayer() {
     let gradient = this.ctx.createRadialGradient(
