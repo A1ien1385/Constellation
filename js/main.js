@@ -64,6 +64,8 @@ class Sky {
     };
   }
 
+  drawConstellation() {}
+
   drawOverlayer() {
     let gradient = this.ctx.createRadialGradient(
       this.width / 2,
