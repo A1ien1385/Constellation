@@ -56,16 +56,26 @@ class Sky {
 
     this.constellation = {
       stars: this.stars.filter((star) => {
-        star.x > x - radius &&
+        return (
+          star.x > x - radius &&
           star.x < x + radius &&
           star.y > y - radius &&
-          star.y < y + radius;
+          star.y < y + radius
+        );
       }),
     };
   }
 
   drawConstellation() {
     const { stars } = this.constellation;
+    const starsCount = stars.length;
+    const firstStar = stars[0];
+    const lastStar = stars[starsCount - 1];
+    this.ctx.beginPath();
+    this.ctx.moveTo(firstStar.x, firstStar.y);
+    this.ctx.lineTo(stars[1].x, stars[1].y);
+    this.ctx.strokeStyle = "#FF58DD";
+    this.ctx.stroke();
   }
 
   drawOverlayer() {
@@ -110,6 +120,7 @@ class Sky {
     this.clearCanvas();
     this.drawStars();
     this.updateStars();
+    this.drawConstellation();
     this.drawOverlayer();
     window.requestAnimationFrame(() => this.draw());
   }
@@ -117,6 +128,7 @@ class Sky {
   run() {
     this.initCanvas();
     this.generateStars(500);
+    this.generateRandomConstellation();
     this.draw();
   }
 }
