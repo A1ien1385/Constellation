@@ -74,6 +74,13 @@ class Sky {
     this.ctx.beginPath();
     this.ctx.moveTo(firstStar.x, firstStar.y);
     this.ctx.lineTo(stars[1].x, stars[1].y);
+
+    for (let i = 1; i < starsCount - 1; i++) {
+      const star = stars[i];
+      const nextStar = stars[i + 1];
+      this.ctx.lineTo(nextStar.x, nextStar.y);
+    }
+
     this.ctx.strokeStyle = "#FF58DD";
     this.ctx.stroke();
   }
