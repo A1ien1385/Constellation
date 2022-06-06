@@ -4,6 +4,12 @@ class Sky {
     this.ctx = canvas.getContext("2d");
     this.width = window.innerWidth;
     this.height = window.innerHeight;
+    this.lastConstellation = 0;
+    this.nextConstellation = Math.random() * 3000;
+    this.constellation = {
+      stars: [],
+      isClosed: false,
+    };
   }
 
   initCanvas() {
@@ -132,19 +138,26 @@ class Sky {
     this.ctx.restore();
   }
 
-  draw() {
+  draw(now) {
     this.clearCanvas();
     this.drawStars();
     this.updateStars();
     this.drawConstellation();
     this.drawOverlayer();
-    window.requestAnimationFrame(() => this.draw());
+
+    if (now - this.lastConstellation > this.nextConstellation) {
+      this.lastConstellation = now;
+      this.nextConstellation = Math.random() * 3000 + 1000;
+      this.generateRandomConstellation();
+    }
+
+    window.requestAnimationFrame((now) => this.draw());
   }
 
   run() {
     this.initCanvas();
     this.generateStars(500);
-    this.generateRandomConstellation();
+    // this.generateRandomConstellation();
     this.draw();
   }
 }
