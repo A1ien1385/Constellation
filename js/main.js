@@ -151,7 +151,7 @@ class Sky {
       this.generateRandomConstellation();
     }
 
-    window.requestAnimationFrame((now) => this.draw());
+    window.requestAnimationFrame((now) => this.draw(now));
   }
 
   run() {
